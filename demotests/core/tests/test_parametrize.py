@@ -15,5 +15,5 @@ def test_is_prime_with_parameterized(n):
 
 
 @pytest.mark.parametrize('n', [4, 6, 9, 15])
-def test_is_prime_with_parameterized(n):
+def test_is_not_prime_with_parameterized(n):
     assert not is_prime(n)
