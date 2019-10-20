@@ -15,7 +15,7 @@ def content_payload():
 
 
 @pytest.fixture
-def content__invalid_payload():
+def content_invalid_payload():
     return {
         "name": "Campanha dias dos país - 2019",
         "tag": "T38470-283728",

@@ -23,7 +23,9 @@ class Content(models.Model):
 
     tag = models.CharField(max_length=100)
     url = models.URLField()
-    content_type = models.CharField(choices=TYPE_CHOICES, default="cb", max_length=2)
+    content_type = models.CharField(
+        choices=TYPE_CHOICES, default="cb", max_length=2
+    )
     gender = models.CharField(choices=GENDER_CHOICES, default="f", max_length=1)
     goal = models.CharField(choices=GOAL_CHOICES, default="awar", max_length=4)
     is_active = models.BooleanField(default=True)

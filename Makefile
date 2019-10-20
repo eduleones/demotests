@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 
 DJANGO_CMD = python demotests/manage.py
+PROJECT_NAME = demotests
 
 SETTINGS = demotests.settings
 
@@ -49,11 +50,14 @@ create_token:
 
 test: SHELL:=/bin/bash
 test: clean
-	py.test demotests/ --ds=$(SETTINGS) -s
+	py.test demotests/ --ds=$(SETTINGS) -s --disable-pytest-warnings
 
 test-matching: SHELL:=/bin/bash
 test-matching: clean
-	py.test demotests/ -k $(test) --ds=$(SETTINGS) -s
+	py.test demotests/ -k $(test) --ds=$(SETTINGS) -s --disable-pytest-warnings
+
+unittest:
+	@python -m unittest $(test)
 
 coverage: clean
 	coverage run --source='.' \

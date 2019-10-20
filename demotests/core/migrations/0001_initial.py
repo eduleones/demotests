@@ -8,24 +8,68 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
             name='Content',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('name', models.CharField(max_length=150, unique=True)),
-                ('slug', django_extensions.db.fields.AutoSlugField(blank=True, editable=False, overwrite=True, populate_from='name')),
+                (
+                    'slug',
+                    django_extensions.db.fields.AutoSlugField(
+                        blank=True,
+                        editable=False,
+                        overwrite=True,
+                        populate_from='name',
+                    ),
+                ),
                 ('tag', models.CharField(max_length=100)),
                 ('url', models.URLField()),
-                ('content_type', models.CharField(choices=[('cp', 'Cupom'), ('cb', 'Combo'), ('cm', 'Communication')], default='cb', max_length=2)),
-                ('gender', models.CharField(choices=[('m', 'Male'), ('f', 'Female')], default='f', max_length=1)),
-                ('goal', models.CharField(choices=[('awar', 'Awareness'), ('cons', 'Consideration'), ('conv', 'Conversion')], default='awar', max_length=4)),
+                (
+                    'content_type',
+                    models.CharField(
+                        choices=[
+                            ('cp', 'Cupom'),
+                            ('cb', 'Combo'),
+                            ('cm', 'Communication'),
+                        ],
+                        default='cb',
+                        max_length=2,
+                    ),
+                ),
+                (
+                    'gender',
+                    models.CharField(
+                        choices=[('m', 'Male'), ('f', 'Female')],
+                        default='f',
+                        max_length=1,
+                    ),
+                ),
+                (
+                    'goal',
+                    models.CharField(
+                        choices=[
+                            ('awar', 'Awareness'),
+                            ('cons', 'Consideration'),
+                            ('conv', 'Conversion'),
+                        ],
+                        default='awar',
+                        max_length=4,
+                    ),
+                ),
                 ('is_active', models.BooleanField(default=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],
-        ),
+        )
     ]

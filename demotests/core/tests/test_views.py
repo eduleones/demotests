@@ -15,7 +15,7 @@ class TestContentViews:
     def setup(self):
         self.client = APIClient()
 
-    def test__get_contents(self):
+    def test_get_contents(self):
 
         ContentFactory(name="Promoção Nike de Natal")
 
@@ -29,7 +29,7 @@ class TestContentViews:
         assert data[0]["slug"] == "promocao-nike-de-natal"
         assert len(data) == 1
 
-    def test__get_contents_with_pagination(self):
+    def test_get_contents_with_pagination(self):
 
         for i in range(0, 60):
             ContentFactory(name=str(i))
@@ -44,7 +44,7 @@ class TestContentViews:
         assert isinstance(data, list)
         assert len(data) == 30
 
-    def test__create_content(self, content_payload):
+    def test_create_content(self, content_payload):
 
         url = r("content:contents")
 
@@ -57,16 +57,16 @@ class TestContentViews:
         assert payload["name"] == data["name"]
         assert data["gender_name"] == "Male"
 
-    def test__create_content_with_invalid_payload(self, content__invalid_payload):
+    def test_create_content_with_invalid_payload(self, content_invalid_payload):
 
         url = r("content:contents")
 
-        payload = content__invalid_payload
+        payload = content_invalid_payload
 
         response = self.client.post(url, data=payload, format="json")
         assert response.status_code == status.HTTP_400_BAD_REQUEST
 
-    def test__get_content_with_slug(self):
+    def test_get_content_with_slug(self):
 
         content = ContentFactory(name="Campanha Natal 2019")
 
@@ -83,7 +83,7 @@ class TestContentViews:
         assert data["name"] == content.name
         assert data["slug"] == content.slug
 
-    def test__get_content_not_found(self):
+    def test_get_content_not_found(self):
 
         url = r("content:contents_viewset", args=[10])
 
@@ -91,7 +91,7 @@ class TestContentViews:
 
         assert response.status_code == status.HTTP_404_NOT_FOUND
 
-    def test__put_content(self, content_payload):
+    def test_put_content(self, content_payload):
 
         content = ContentFactory(name="Campanha Natal 2019")
 
@@ -105,7 +105,7 @@ class TestContentViews:
         data = response.json()
         assert payload["name"] == data["name"]
 
-    def test__put_content_with_partial_payload(self, content_payload_partial):
+    def test_put_content_with_partial_payload(self, content_payload_partial):
 
         content = ContentFactory(name="Campanha Natal 2019")
 
@@ -116,7 +116,7 @@ class TestContentViews:
         response = self.client.put(url, data=payload, format="json")
         assert response.status_code == status.HTTP_400_BAD_REQUEST
 
-    def test__put_content_not_found(self):
+    def test_put_content_not_found(self):
 
         url = r("content:contents_viewset", args=["test-slug-invalid"])
 
@@ -124,7 +124,7 @@ class TestContentViews:
 
         assert response.status_code == status.HTTP_404_NOT_FOUND
 
-    def test__patch_content(self, content_payload_partial):
+    def test_patch_content(self, content_payload_partial):
 
         content = ContentFactory(name="Dias das mães")
 
@@ -139,14 +139,14 @@ class TestContentViews:
         assert data["name"] == "Partial Name"
         assert data["slug"] == "partial-name"
 
-    def test__patch_content_not_found(self):
+    def test_patch_content_not_found(self):
 
         url = r("content:contents_viewset", args=[370])
         response = self.client.patch(url, format="json")
 
         assert response.status_code == status.HTTP_404_NOT_FOUND
 
-    def test__delete_content(self):
+    def test_delete_content(self):
 
         content = ContentFactory(name="Dias das mães")
 
@@ -158,7 +158,7 @@ class TestContentViews:
         assert response.status_code == status.HTTP_204_NO_CONTENT
         assert Content.objects.filter(pk=content.pk).count() == 0
 
-    def test__delete_content_not_found(self):
+    def test_delete_content_not_found(self):
 
         url = r("content:contents_viewset", args=[370])
         response = self.client.delete(url, format="json")
