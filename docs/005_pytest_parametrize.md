@@ -26,4 +26,4 @@ def smtp_connection(request):
 ```
 
 ---
-***[Next: Pytest Parametrize](005_pytest_parametrize.md)***
+***[Next: Pytest Markers](006_pytest_markers.md)***

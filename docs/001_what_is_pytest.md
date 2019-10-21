@@ -18,6 +18,30 @@ Pytest is a testing framework which allows us to write test codes using python. 
 *   Open source
 
 
+---
+
+### Install:
+
+`pip install pytest`
+
+### Configure:
+
+
+```
+pytest.ini:
+        [pytest]
+        markers =
+            slow: marks tests as slow
+            serial
+        env =
+            DB_PASS_TEST='kllsjfu949'
+            D:TESTING=True     
+
+```
+
+### Run:
+`py.test [options] [file_or_dir]`
+
 
 ---
 ***[Next: Pytest vs Unittest](002_pytest_vs_unittest.md)***

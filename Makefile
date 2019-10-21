@@ -56,6 +56,14 @@ test-matching: SHELL:=/bin/bash
 test-matching: clean
 	py.test demotests/ -k $(test) --ds=$(SETTINGS) -s --disable-pytest-warnings
 
+test-mark: clean
+	py.test demotests/ -v -m $(mark) --ds=$(SETTINGS) -s --disable-pytest-warnings
+
+test: SHELL:=/bin/bash
+test-ci: clean
+	py.test demotests/ --ds=$(SETTINGS) -s --disable-pytest-warnings --ci
+
+
 unittest:
 	@python -m unittest $(test)
 

@@ -8,14 +8,6 @@ assertEqual, assertNotEqual, assertTrue, assertFalse, assertIs, assertIsNot, ass
 **Pytest:** 
 assert
 
----
-
-### Install:
-
-`pip install pytest`
-
-### Run:
-`pytest test_mod.py`
 
 ---
 ***[Next: Pytest Fixtures](003_pytest_fixtures.md)***

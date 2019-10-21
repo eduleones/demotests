@@ -35,3 +35,5 @@ def content_payload_partial():
 @pytest.fixture
 def banner_payload():
     return {"description": "Banner principal", "is_active": True}
+
+
