@@ -24,3 +24,6 @@ def get_db(request):
 def test_get_db(get_db):
     pass
 ```
+
+---
+***[Next: Mock](008_what_is_mock.md)***

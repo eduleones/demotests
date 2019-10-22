@@ -51,4 +51,4 @@ def redis():
 
 
 ---
-***[Next: Pytest Parametrize](005_pytest_parametrize.md)***
+***[Next: Pytest Parametrize | Exceptions](005_pytest_parametrize_and_exceptions.md)***

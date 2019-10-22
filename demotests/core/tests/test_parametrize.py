@@ -38,3 +38,9 @@ def test_is_prime_with_parameterized(n):
 @pytest.mark.parametrize('n', [4, 6, 9, 15])
 def test_is_not_prime_with_parameterized(n):
     assert not is_prime(n)
+
+
+# Exceptions
+def test_zero_division():
+    with pytest.raises(ZeroDivisionError):
+        1 / 0

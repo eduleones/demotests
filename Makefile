@@ -59,7 +59,6 @@ test-matching: clean
 test-mark: clean
 	py.test demotests/ -v -m $(mark) --ds=$(SETTINGS) -s --disable-pytest-warnings
 
-test: SHELL:=/bin/bash
 test-ci: clean
 	py.test demotests/ --ds=$(SETTINGS) -s --disable-pytest-warnings --ci
 

@@ -38,7 +38,6 @@ def test_os_systems():
     assert linux > windows
 
 
-
 # UsingMarks
 @pytest.mark.redis_db(2)
 def test_connect_redis(redis_client):

@@ -1,5 +1,6 @@
 import pytest
 
+from core.managers import Client
 
 @pytest.fixture
 def content_payload():
@@ -37,3 +38,10 @@ def banner_payload():
     return {"description": "Banner principal", "is_active": True}
 
 
+@pytest.fixture
+def marina():
+    return Client('Marina', 21, True)
+
+@pytest.fixture
+def joao():
+    return Client('João', 28, False)

@@ -14,8 +14,12 @@ def redis_client(request):
 
 # Hook commandline
 def pytest_addoption(parser):
-    parser.addoption("--ci", action="store_true", default=False,
-                    help="Indicate test are run on CI")
+    parser.addoption(
+        "--ci",
+        action="store_true",
+        default=False,
+        help="Indicate test are run on CI",
+    )
 
 
 @pytest.fixture
