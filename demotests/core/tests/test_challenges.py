@@ -54,4 +54,4 @@ def test_last_element():
         sum_fist_last(['dog', 6, 'cat', 4])
 
     with pytest.raises(NotImplementedError):
-        sum_fist_last({'dog': 6, 'cat': 4})        
+        sum_fist_last({'dog': 6, 'cat': 4})
