@@ -30,20 +30,34 @@ self.joao.get_cupom()
 
 ### Decorators:
 
-Module:
-```
-import os
+Patch:
 
-@mock.patch('os.listdir', mock.MagicMock(return_value='C:/'))
-def test_mock_patch_decorator():
-   assert os.listdir() == 'C:/'
+mock.patch() takes a string which will be resolved to an object when applying the patch
 ```
-
-Object:
-```
-@mock.patch.object(Client, 'get_cupom', mock.MagicMock(return_value='1298'))
+@mock.patch('core.managers.Client.get_cupom', mock.MagicMock(return_value=1298))
 def test_mock_patch_decorator(marina):
-   assert marina.get_cupom() ==  '1298'
+    assert marina.get_cupom() == 1298
+
+
+@mock.patch('core.managers.Client.get_cupom')
+def test_mock_patch_decorator_with_parameter(mocked, marina):
+    mocked.return_value = 1298
+    assert marina.get_cupom() == 1298
+```
+
+Patch.object:
+
+mock.patch.object() takes a direct reference
+```
+@mock.patch.object(Client, 'get_cupom', 1298)
+def test_mock_patch_object_decorator(marina):
+    assert marina.get_cupom == 1298
+
+
+@mock.patch.object(Client, 'get_cupom')
+def test_mock_patch_object_decorator_with_parameter(mocked, marina):
+    mocked.return_value = 1298
+    assert marina.get_cupom() == 1298
 ```
 
 ---

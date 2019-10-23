@@ -26,7 +26,9 @@ urlpatterns = [
         name="schema-redoc",
     ),
     path(
-        "", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"
+        "docs/",
+        schema_view.with_ui("redoc", cache_timeout=0),
+        name="schema-redoc",
     ),
     path("content/", include(("core.urls", "content"), namespace="content")),
 ]

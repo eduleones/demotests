@@ -2,6 +2,8 @@ import random
 
 import requests
 
+from core.exceptions import GetPokemonNotFoundError, GetPokemonGenericError
+
 
 class Client:
     def __init__(self, name, age, status):
@@ -20,10 +22,13 @@ class Client:
             return True
 
 
-
-
 def get_pokemon(name):
     url = f'https://pokeapi.co/api/v2/pokemon/{name}/'
 
     response = requests.get(url)
-    return response.json()
+    if response.status_code == 200:
+        return response.json()
+    elif response.status_code == 404:
+        raise GetPokemonNotFoundError
+    else:
+        raise GetPokemonGenericError

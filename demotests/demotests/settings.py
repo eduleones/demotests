@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd apps
     "rest_framework",
+    "drf_yasg",
     # local
     "core",
 ]

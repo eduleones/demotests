@@ -1,59 +1,45 @@
-## **Mock - API**
+from unittest import mock
+import pytest
+import responses
+import vcr
 
-API Function:
+from core.managers import get_pokemon
+from core.exceptions import GetPokemonNotFoundError, GetPokemonGenericError
 
-```
-def get_pokemon(name):
-    url = f'https://pokeapi.co/api/v2/pokemon/{name}/'
+from .json_responses import json_pikachu
 
-    response = requests.get(url)
-    return response.json()
-```
 
-Test:
-```
 def test_get_pokemon_pikachu():
     response = get_pokemon('pikachu')
+
     assert response['base_experience'] == 112
     assert isinstance(response['abilities'], list)
-```
 
-### Using only mock
 
-```
 @mock.patch('core.managers.get_pokemon')
 def test_get_pokemon_pikachu_mocked(mocked):
     mocked.return_value = json_pikachu
 
     response = get_pokemon('pikachu')
     assert response['base_experience'] == 112
-    assert isinstance(response['abilities'], list)    
-```
+    assert isinstance(response['abilities'], list)
 
-### Using lib VCRpy
 
-`https://github.com/kevin1024/vcrpy`
-
-```
 @vcr.use_cassette('recorded/test_get_pokemon_pikachu_with_vcrpy.yaml')
 def test_get_pokemon_pikachu_with_vcrpy():
     response = get_pokemon('pikachu')
 
     assert response['base_experience'] == 112
     assert isinstance(response['abilities'], list)
-```
 
-### Testing error with responses
 
-`https://github.com/getsentry/responses`
-
-```
 @responses.activate
 def test_get_pokemon_pikachu_not_found():
     responses.add(
         responses.GET,
         'https://pokeapi.co/api/v2/pokemon/pikachu/',
-        json={'error': 'not found'}, status=404
+        json={'error': 'not found'},
+        status=404,
     )
 
     with pytest.raises(GetPokemonNotFoundError):
@@ -65,12 +51,9 @@ def test_get_pokemon_pikachu_not_found():
     responses.add(
         responses.GET,
         'https://pokeapi.co/api/v2/pokemon/pikachu/',
-        json={'error': 'generic'}, status=500
+        json={'error': 'generic'},
+        status=500,
     )
 
     with pytest.raises(GetPokemonGenericError):
         get_pokemon('pikachu')
-```
-
----
-***[Next: Load Testing](011_load_testing.md)***

@@ -2,6 +2,7 @@ import pytest
 
 from core.managers import Client
 
+
 @pytest.fixture
 def content_payload():
     return {
@@ -41,6 +42,7 @@ def banner_payload():
 @pytest.fixture
 def marina():
     return Client('Marina', 21, True)
+
 
 @pytest.fixture
 def joao():
