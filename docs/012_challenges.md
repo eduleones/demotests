@@ -15,13 +15,22 @@
 **2** - Write the algorithm for the test:
 
 ```
-def test_last_element():
-    assert sum_fist_last(['dog', 'cat', 'duck']) == 'dogduckdogduck'
-    assert sum_fist_last([33, 45, 6, 65, 1, 34, 78]) == 222
+def test_sum_fist_and_last_element():
+    assert sum_fist_and_last(['dog', 'cat', 'duck']) == 'dogduckdogduck'
+    assert sum_fist_and_last([33, 45, 6, 65, 1, 34, 78]) == 222
 
     with pytest.raises(TypeError):
         sum_fist_last(['dog', 6, 'cat', 4])
 
     with pytest.raises(NotImplementedError):
         sum_fist_last({'dog': 6, 'cat': 4})  
+```
+
+**3** - Create test with mock:
+
+```
+def get_github_user(user):
+    url = f'https://api.github.com/users/{user}'
+    response = requests.get(url)
+    return response.json()
 ```

@@ -32,3 +32,9 @@ def get_pokemon(name):
         raise GetPokemonNotFoundError
     else:
         raise GetPokemonGenericError
+
+
+def get_github_user(user):
+    url = f'https://api.github.com/users/{user}'
+    response = requests.get(url)
+    return response.json()

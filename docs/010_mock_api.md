@@ -72,5 +72,29 @@ def test_get_pokemon_pikachu_not_found():
         get_pokemon('pikachu')
 ```
 
+### With asyncio
+
+```
+from asyncio import coroutine
+from unittest.mock import patch, Mock
+ 
+
+async def test_audiences_comm_ab_test(
+    self, comm_ab_test, mock_response_payload
+):
+    with patch.object(
+        self.backend, 'get_response_ab_test'
+    ) as get_mock:
+        coro = Mock(
+            name="CoroutineResult",
+            return_value=mock_response_payload,
+        )
+        get_mock.side_effect = coroutine(coro)
+        comm = await self.backend.get_audience(comm_ab_test)
+
+    assert isinstance(comm.customers, list)
+    assert len(comm.customers) == 1000000
+```
+
 ---
 ***[Next: Load Testing](011_load_testing.md)***
